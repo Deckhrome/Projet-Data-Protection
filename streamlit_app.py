@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 
-path_attack1 = "/home/johan/Desktop/PDSSC/Projet/data/dataset/Network datatset/clean_csv/attack_1_cleaned.csv"
+path_attack1 = "/home/johan/Desktop/PDSSC/Projet/data/dataset/Network dataset/cleaned/attack_1_cleaned.csv"
 
 st.set_page_config(
     page_title="Analysis Network Attacks",
