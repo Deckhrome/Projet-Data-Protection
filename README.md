@@ -13,7 +13,7 @@ Build a streamlit webapp providing an interactive interface to explore results.
 libraries :
 
 ```bash
-pip install numpy pandas scikit-learn matplotlib streamlit
+pip install numpy pandas scikit-learn matplotlib streamlit plotly
 ```
 
 or just start the st_venv :
