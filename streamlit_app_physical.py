@@ -1,6 +1,12 @@
 import streamlit as st
 import pandas as pd
 import plotly.express as px
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.metrics import classification_report, confusion_matrix
+from imblearn.over_sampling import SMOTE
+import time
 
 # Set path of the data
 PATHS = {
@@ -125,10 +131,21 @@ def count_active_pump(df):
         st.plotly_chart(fig, use_container_width=True)
     else:
         st.warning("No pump columns found in this dataset.")
+
+def knn_display():
+    # Select with slider which df number to use
+    st.markdown("Select the dataset to use for the KNN analysis.")
+    df_number = st.slider("Select the dataset number", 1, 4, 1)
+    path_acc = f"data/results/figures/knn_accuracy_df_{df_number}.png"
+    path_cm = f"data/results/figures/knn_cm_df_{df_number}.png"
+
+    st.image(path_acc, use_column_width=True)
+    st.image(path_cm, use_column_width=True)
     
 
+
 # Tabs for different analyses
-tab1, tab2, tab3, tab4, tab5 = st.tabs(["Correlation Matrix", "Distributions", "Boolean States", "Open Valves", "Active Pumps"])
+tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs(["Correlation Matrix", "Distributions", "Boolean States", "Open Valves", "Active Pumps","KNN"])
 
 with tab1:
     st.subheader("Correlation Matrix for Tank Columns")
@@ -172,4 +189,12 @@ with tab5:
     st.subheader("Distribution of Pump States by Attack Type")
     st.markdown("This analysis computes the number of active pumps for each sample and shows the distribution by attack type.")
     count_active_pump(df)
+
+with tab6:
+    st.subheader("KNN Results")
+    st.markdown("Train and test a KNN classifier interactively by selecting the number of neighbors (k).")
+    knn_display()
+
+
+
 
