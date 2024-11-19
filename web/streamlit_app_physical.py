@@ -10,10 +10,10 @@ import time
 
 # Set path of the data
 PATHS = {
-    "Attack 1": "results/cleaned/phy_att_1.csv",
-    "Attack 2": "results/cleaned/phy_att_2.csv",
-    "Attack 3": "results/cleaned/phy_att_3.csv",
-    "Attack 4": "results/cleaned/phy_att_4.csv",
+    "Attack 1": "results/cleaned/Physical dataset/phy_att_1_cleaned.csv",
+    "Attack 2": "results/cleaned/Physical dataset/phy_att_2_cleaned.csv",
+    "Attack 3": "results/cleaned/Physical dataset/phy_att_3_cleaned.csv",
+    "Attack 4": "results/cleaned/Physical dataset/phy_att_4_cleaned.csv",
 }
 
 # Streamlit page configuration
