@@ -1,6 +1,7 @@
 # Project Data Protection
 
 The objective of this project is to apply the data analysis chain on a cyberphysical dataset:
+
 1) Using only network data
 2) Using only physical data
 
@@ -10,13 +11,20 @@ Build a streamlit webapp providing an interactive interface to explore results.
 
 ## Installation
 
-libraries :
+### With Conda
+
+Create a new environment :
 
 ```bash
-pip install numpy pandas scikit-learn matplotlib streamlit plotly
+conda env create -f environment.yaml
 ```
 
-or just start the st_venv :
+Activate the environment :
+
 ```bash
-source st_venv/bin/activate
+conda activate data_protection
 ```
+
+## Resources
+
+- Download all the data from [here](https://ieee-dataport.org/open-access/hardware-loop-water-distribution-testbed-wdt-dataset-cyber-physical-security-testing)
