@@ -10,10 +10,10 @@ import time
 
 # Set path of the data
 PATHS = {
-    "Attack 1": "/home/johan/Desktop/PDSSC/Projet/data/dataset/Physical dataset/cleaned/phy_att_1_cleaned.csv",
-    "Attack 2": "/home/johan/Desktop/PDSSC/Projet/data/dataset/Physical dataset/cleaned/phy_att_2_cleaned.csv",
-    "Attack 3": "/home/johan/Desktop/PDSSC/Projet/data/dataset/Physical dataset/cleaned/phy_att_3_cleaned.csv",
-    "Attack 4": "/home/johan/Desktop/PDSSC/Projet/data/dataset/Physical dataset/cleaned/phy_att_4_cleaned.csv",
+    "Attack 1": "results/cleaned/phy_att_1.csv",
+    "Attack 2": "results/cleaned/phy_att_2.csv",
+    "Attack 3": "results/cleaned/phy_att_3.csv",
+    "Attack 4": "results/cleaned/phy_att_4.csv",
 }
 
 # Streamlit page configuration
@@ -136,8 +136,8 @@ def knn_display():
     # Select with slider which df number to use
     st.markdown("Select the dataset to use for the KNN analysis.")
     df_number = st.slider("Select the dataset number", 1, 4, 1)
-    path_acc = f"data/results/figures/knn_accuracy_df_{df_number}.png"
-    path_cm = f"data/results/figures/knn_cm_df_{df_number}.png"
+    path_acc = f"results/figures/knn_accuracy_df_{df_number}.png"
+    path_cm = f"results/figures/knn_cm_df_{df_number}.png"
 
     st.image(path_acc, use_column_width=True)
     st.image(path_cm, use_column_width=True)
