@@ -1,4 +1,4 @@
-name: protection_donnees
+name: data_protection
 channels:
   - defaults
 dependencies:

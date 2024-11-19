@@ -16,19 +16,13 @@ Build a streamlit webapp providing an interactive interface to explore results.
 Create a new environment :
 
 ```bash
-conda create -n st_venv python=3.8
+conda env create -f environment.yaml
 ```
 
-libraries :
+Activate the environment :
 
 ```bash
-pip install numpy pandas scikit-learn matplotlib streamlit plotly
-```
-
-or just start the st_venv :
-
-```bash
-source st_venv/bin/activate
+conda activate data_protection
 ```
 
 ## Resources
