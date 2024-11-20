@@ -1,22 +1,26 @@
-\documentclass{article}
-    % General document formatting
-    \usepackage[margin=0.7in]{geometry}
-    \usepackage[parfill]{parskip}
-    \usepackage[utf8]{inputenc}
-    
-    % Related to math
-    \usepackage{amsmath,amssymb,amsfonts,amsthm}
+\documentclass[a4paper,12pt]{article}
+
+% Importation des fichiers de configuration
+\input{config/setup.tex}
 
 \begin{document}
 
-Name, date, Exercise X
+% Page de titre
+\input{config/titlepage.tex}
 
-\section*{Part a}
+% Table des matières
+% \tableofcontents
+\newpage
 
-Put your answer to part a here
+% Chapitres
+\input{chapters/introduction.tex}
+% \input{chapters/objectives.tex}
+% \input{chapters/methodology.tex}
+% \input{chapters/results.tex}
+% \input{chapters/conclusion.tex}
 
-\section*{Part b}
-
-etc
+% Bibliographie
+% \bibliographystyle{plain}
+% \bibliography{bibliography.bib}
 
 \end{document}

@@ -1,0 +1,20 @@
+{
+  "name": "LaTeX DevContainer",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "context": ".." // Spécifie que le contexte est le dossier parent
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": ["James-Yu.latex-workshop"],
+      "settings": {
+        "latex-workshop.latex.outDir": "./out",
+        "latex-workshop.view.pdf.viewer": "tab"
+      }
+    }
+  },
+  "remoteUser": "root",
+  "mounts": [
+    "source=${localWorkspaceFolder}/rapport,target=/workspace/rapport,type=bind"
+  ]
+}
