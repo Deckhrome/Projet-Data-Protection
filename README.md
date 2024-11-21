@@ -33,6 +33,9 @@ pip install -r requirements.txt
 
 ## Run streamlit app
 
+Il faut lancer les notebook pour générer les datas clean avant
+(clean_network_attacks.ipynb / clean_network_attacks.ipynb)
+
 ```bash
 streamlit run web/streamlit_app_physical.py
 ```
