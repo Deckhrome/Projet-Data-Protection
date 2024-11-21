@@ -1,6 +1,6 @@
 import streamlit as st
 import plotly.express as px
-
+from st_functions_network import *
 # Function: Display dataset information
 
 # Function: Correlation matrix for Tank columns
