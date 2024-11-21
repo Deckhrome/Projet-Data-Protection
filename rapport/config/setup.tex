@@ -14,24 +14,25 @@
 \usepackage{graphicx}
 \usepackage{xcolor}
 \usepackage{hyperref}
-\usepackage{amsmath}
 \usepackage{amssymb}
 
 % Fichiers utilitaires
 \input{utils/colors.tex}
-% \input{utils/styles.tex}
-% \input{utils/commands.tex}
+\input{utils/styles.tex}
 
 % Personnalisation de l'en-tête
 \usepackage{fancyhdr}
 \pagestyle{fancy}
 \fancyhead[L]{\includegraphics[width=1.5cm]{figures/logo-unistra.png}}
-\fancyhead[C]{Data Protection Project Report}
+\fancyhead[C]{Protection des données - Rapport}
 \fancyhead[R]{21/11/2024}
+\setlength{\headsep}{1.5cm} % Modifier l'espace après l'en-tête
+
 
 % Autres configurations
 \setlength{\parindent}{0pt} % Pas d'indentation
-\setlength{\parskip}{1em}   % Espacement entre les paragraphes
+\setlength{\parskip}{.5em}   % Espacement entre les paragraphes
+
 \hypersetup{
     colorlinks=true,
     linkcolor=mainblue,

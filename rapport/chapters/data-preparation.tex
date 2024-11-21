@@ -1,0 +1,88 @@
+\section{Préparation des données}
+
+\subsection{Données réseau}
+
+\subsubsection*{Changement des noms des colonnes}
+
+Certaines colonnes ont des espaces inutiles dans leur nom. Pour normaliser les noms des colonnes, les espaces ont été retirées.
+
+\subsubsection*{Colonnes incomplètes}
+Plusieurs colonnes présentent des problèmes spécifiques dans les données. Les colonnes suivantes sont concernées : \texttt{ip\_s}, \texttt{ip\_d}, \texttt{sport}, \texttt{dport}, \    texttt{flags}, \texttt{n\_pkt\_src}, \texttt{n\_pkt\_dst}, \texttt{modbus\_fn}, \texttt{modbus\_response}. Ces colonnes souffrent d'une absence partielle de valeurs (\textit{missing values}), rendant leur utilisation problématique dans certains cas.
+
+\subsubsection*{Problèmes spécifiques aux colonnes liées au Modbus}
+Les colonnes \texttt{modbus\_fn} et \texttt{modbus\_response} présentent un nombre particulièrement élevé de valeurs manquantes (par exemple, 153121 valeurs manquantes dans \textit{attack1}). Ces colonnes, étant spécifiques au protocole Modbus, ne sont pas toujours pertinentes pour toutes les entrées. Cela soulève la question de leur utilité globale pour l'analyse.
+
+\subsubsection*{Analyse des protocoles dans la colonne \texttt{proto}}
+La colonne \texttt{proto} recense différents protocoles selon le contexte. Pour les données liées aux attaques (\textit{attack}), elle contient les protocoles ARP, ICMP, Modbus et TCP. En revanche, pour le cas normal, seuls les protocoles Modbus et TCP sont présents. Cela indique une divergence dans la nature des données entre les cas normaux et les attaques.
+
+\subsubsection*{Problèmes de typage}
+Les colonnes \texttt{sport}, \texttt{dport}, \texttt{flags}, \texttt{n\_pkt\_src} et \texttt{n\_pkt\_dst} présentent des problèmes de typage, ce qui peut compliquer leur traitement ou analyse.
+
+\subsubsection*{Partage de dates entre plusieurs entrées}
+Certaines dates apparaissent dans plusieurs entrées, ce qui pourrait poser problème pour certaines analyses temporelles. Par exemple, la date \texttt{2021-04-09 18:42:46.997219} est partagée par 4 entrées distinctes.
+
+\subsubsection*{Conventions dans les noms de colonnes}
+Les préfixes \texttt{s} et \texttt{d} dans les colonnes \texttt{ip\_s}, \texttt{sport}, \texttt{ip\_d}, et \texttt{dport} indiquent respectivement la source (\texttt{s}) et la destination (\texttt{d}) des communications.
+
+\subsubsection*{Présence de données normales dans les fichiers d'attaque}
+Il a été noté que des cas considérés comme normaux sont inclus dans les fichiers CSV liés aux attaques (\textit{attack}). Cela pourrait nécessiter l'utilisation d'un fichier séparé contenant uniquement les cas normaux pour une analyse comparative.
+
+\subsubsection*{Types d'attaques présents dans les données}
+Les différents types d'attaques varient selon les fichiers \textit{attack}. Voici un récapitulatif des types identifiés :
+\begin{itemize}
+    \item \texttt{['normal', 'anomaly', 'MITM', 'physical fault']} pour \textit{attack\_1}.
+    \item \texttt{['normal', 'physical fault', 'anomaly', 'DoS', 'MITM']} pour \textit{attack\_3}.
+    \item \texttt{['normal', 'scan', 'DoS', 'physical fault', 'MITM']} pour \textit{attack\_4} et \textit{attack\_2}.
+\end{itemize}
+
+
+
+\subsection{Données physiques}
+
+\subsubsection*{Observations générales}
+\begin{itemize}
+    \item Il y a plus de cas normaux que de cas d'attaques, ce qui est cohérent avec les données réseau.
+    \item Aucune valeur manquante n'a été identifiée dans les colonnes.
+    \item Les colonnes semblent représenter des composants d'une machine industrielle ou d'un système technique. Les valeurs booléennes (\texttt{False}/\texttt{True}) pourraient indiquer si un composant est affecté ou activé.
+\end{itemize}
+
+\subsubsection*{Tank (\texttt{int64})}
+La colonne \texttt{Tank} contient des valeurs comprises entre 0 et 3427 dans le fichier \texttt{att\_1.csv}. Cependant, aucune information claire n'est disponible sur la signification de ces valeurs.
+
+\subsubsection*{Pump (\texttt{bool})}
+La colonne \texttt{Pump} contient majoritairement des valeurs \texttt{False} dans tous les fichiers CSV analysés.
+
+\subsubsection*{Flow\_sensor (\texttt{int64})}
+Les colonnes \texttt{Flow\_sensor\_1}, \texttt{Flow\_sensor\_2} et \texttt{Flow\_sensor\_3} présentent des comportements spécifiques :
+\begin{itemize}
+    \item Les valeurs observées sont principalement \texttt{0}, \texttt{4000} ou \texttt{100} pour les deux premières colonnes.
+    \item La troisième colonne, en revanche, présente plus de cent valeurs différentes allant de \texttt{0} à \texttt{4789}.
+\end{itemize}
+
+\subsubsection*{Valv (\texttt{bool})}
+Les colonnes associées aux vannes (\texttt{valv}) comprennent 22 colonnes distinctes. La majorité des vannes sont définies comme \texttt{False} pour toutes les lignes, en particulier les neuf premières colonnes de \texttt{valv}, qui sont systématiquement \texttt{False}.
+
+\subsubsection*{Label\_n (\texttt{int64})}
+Tout d'abord, cette colonne a été rennommée de \texttt{Lable\_n} en \texttt{Label\_n} pour \texttt{df\_2}.
+
+De plus, cette colonne encode les catégories suivantes :
+\begin{itemize}
+    \item \texttt{1} pour une attaque,
+    \item \texttt{0} pour un cas normal.
+\end{itemize}
+Environ deux tiers des données correspondent à des cas normaux, bien qu'il existe une variation selon les fichiers. Par exemple :
+\begin{itemize}
+    \item \texttt{att\_2} contient 85\% de cas normaux,
+    \item \texttt{att\_4} contient 68\% de cas normaux.
+\end{itemize}
+
+\subsubsection*{Label}
+L'une des catégories de \texttt{df\_2} a été rennomée de \texttt{nomal} en \texttt{normal}.
+
+Dans le cas général, cette colonne fournit le nom de l'attaque. Les catégories identifiées incluent :
+\begin{itemize}
+    \item \texttt{normal},
+    \item \texttt{MITM} (Man-In-The-Middle),
+    \item \texttt{physical fault},
+    \item \texttt{DoS} (Denial of Service).
+\end{itemize}
