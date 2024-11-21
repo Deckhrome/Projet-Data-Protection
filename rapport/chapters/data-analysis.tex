@@ -237,5 +237,20 @@ La figure \ref{fig:mean} montre que les moyennes sont à des niveaux similaires 
 
 \subsubsection*{Autres remarques}
 
-Flag discrimine les scans et label\_n permet de détecter les attaques MITM.
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{figures/network-analysis/flag_normal.png}
+  \caption{Nombre de \texttt{Flag} pour les attaques \texttt{normal}}
+  \label{fig:flag-normal}
+\end{figure}
 
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{figures/network-analysis/flag_scan.png}
+  \caption{Nombre de \texttt{Flag} pour les attaques \texttt{SCAN}}
+  \label{fig:flag-scan}
+\end{figure}
+
+D'après les figures \ref{fig:flag-scan} et \ref{fig:flag-normal}, la majorité des attaques \texttt{normal} ont un flag à 11000 tandis que les attaques \texttt{SCAN} ont des flags à 10010 et 100. Il est donc possible de discriminer les attaques SCAN des attaques normales en se basant sur le flag.
+
+Avec une approche similaire, on peut remarquer que les attaques \texttt{MITM} ont un label\_n à 1 tandis que les attaques \texttt{normal} ont un label\_n à 0.
