@@ -1,1 +1,148 @@
 \section{Analyse des données}
+
+\subsection{Données physiques}
+
+\subsubsection*{Heure des données}
+
+Pour un dataframe données, l'heure de chaque ligne est toujours comprise dans une plage de temps très restreinte (aux alentour de 1h maximum d'écart). Par exemple, pour le dataframe 1, l'heure des données est comprise entre 18h23 et 19h03.
+
+De plus, les dataframes 1 et 3 ont des données prises le même jour.
+
+\subsubsection*{Colonnes Tank}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.6\textwidth]{figures/physical-analysis/tank-correlation.png}
+  \caption{Matrice de corrélation des colonnes tanks}
+  \label{fig:tank-correlation}
+\end{figure}
+
+Comme le montre la figure \ref{fig:tank-correlation}, il n'y a pas de tendance globale entre les colonnes \texttt{Tank} des différents fichiers. Il y aurait peut-être un lien entre les tanks proches, mais cela reste à confirmer.
+
+\subsubsection*{Colonnes Pump}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.6\textwidth]{figures/physical-analysis/pump_proportion.png}
+  \caption{Proportion des valeurs de la colonne Pump}
+  \label{fig:pump-proportion}
+\end{figure}
+
+La figure \ref{fig:pump-proportion} montre que les colonnes \texttt{pump} sont majoritairement à \texttt{false}. De plus, la colonne \texttt{Pump\_3} est toujours à \texttt{false} et ce quel que soit le dataframe.
+
+\subsubsection*{Colonnes Flow\_sensor}
+
+\begin{figure}[H]
+  \centering
+  % Première ligne
+  \begin{minipage}[b]{0.45\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figures/physical-analysis/flowsensor1.png}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{0.45\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figures/physical-analysis/flowsensor2.png}
+  \end{minipage}
+  \vspace{1em} % Espace vertical entre les lignes
+  % Deuxième ligne
+  \begin{minipage}[b]{0.45\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figures/physical-analysis/flowsensor3.png}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{0.45\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figures/physical-analysis/flowsensor4.png}
+  \end{minipage}
+  \caption{Distribution des valeurs de \texttt{flow\_sensor}}
+  \label{fig:flowsensor}
+\end{figure}
+La figure \ref{fig:flowsensor} montre la distribution des valeurs de la colonne \texttt{flow\_sensor}. On peut en tirer les conclusions suivantes :
+\begin{itemize}
+  \item Pour les capteurs \texttt{flow\_sensor\_1} et \texttt{flow\_sensor\_2}, les valeurs sont uniquement 0, 100 et 4000.
+  \item Le capteur \texttt{flow\_sensor\_3} ne présente que des valeurs à 0.
+  \item Les valeurs du capteur \texttt{flow\_sensor\_4} sont réparties entre 0 et 5000. Cette répartition n'est pas uniforme mais il y a des valeurs quasiment pour chaque intervalle.
+  \item Quel que soit le sensor, il y a toujours une majorité de valeurs à 0.
+\end{itemize}
+
+Cette figure ne montre les résultats que pour 1 dataframes mais la tendance globale est la même pour les autres.
+
+\subsubsection*{Colonnes Valv}
+
+\begin{figure}[H]
+  \centering
+  % Première ligne
+  \begin{minipage}[b]{0.45\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figures/physical-analysis/df1valve.png}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{0.45\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figures/physical-analysis/df2valve.png}
+  \end{minipage}
+  \vspace{1em} % Espace vertical entre les lignes
+  % Deuxième ligne
+  \begin{minipage}[b]{0.45\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figures/physical-analysis/df3valve.png}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{0.45\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figures/physical-analysis/df4valve.png}
+  \end{minipage}
+  \caption{Distribution des valeurs pour les colonnes \texttt{valv} pour chaque dataframe}
+  \label{fig:valv}
+\end{figure}
+
+Concernant les colonnes \texttt{valv}, la figure \ref{fig:valv} montre que la proportion de true est souvent similaire pour une valve données. Cela semble s'appliquer sur tous les dataframes sauf pour le dataframe 2 où la proportion de \texttt{true} est différente.
+
+Par ailleurs, les 9 première valves sont toujours à \texttt{false} et il est donc possible de les ignorer.
+
+\subsubsection*{Distribution des labels}
+
+\begin{figure}[H]
+  \centering
+  % Première ligne
+  \begin{minipage}[b]{0.45\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figures/physical-analysis/distriblabel.png}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{0.45\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figures/physical-analysis/distriblabel_n.png}
+  \end{minipage}
+  \caption{Distribution de \texttt{label} et \texttt{label\_n}}
+  \label{fig:labels}
+\end{figure}
+
+La figure \ref{fig:labels} montre qu'il y a une majorité de valeurs \texttt{normal} pour la colonne \texttt{label}, qui suit le nombre de valeurs \texttt{false} de la colonne \texttt{label\_n}.
+
+Ces deux données sont donc liées et il est possible de ne pas utiliser la colonne \texttt{label\_n}.
+
+\subsubsection*{Distribution des valeurs de tank}
+
+\begin{figure}[H]
+  \centering
+  % Première ligne
+  \begin{minipage}[b]{0.45\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figures/physical-analysis/distriblabel.png}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{0.45\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figures/physical-analysis/distriblabel_n.png}
+  \end{minipage}
+  \caption{Distribution de \texttt{label} et \texttt{label\_n}}
+  \label{fig:labels}
+\end{figure}
+
+% Distribution des valeurs de tank : pas de conclusion
+
+% Distribution valves: 10 -> toujours attaque + pas de loi trouvée pour prédire le nombre d'attaques en fonction du nombre de valves ouvertes
+
+% Distribution des pumps : Toujours à peu près le même nombre d'attaques en fonction du nombre de pump
