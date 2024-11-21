@@ -29,7 +29,6 @@ L'analyse du modèle CART (\textit{Classification And Regression Tree}) commence
 Pour évaluer les performances, trois métriques principales sont calculées : 
 \begin{itemize}
     \item \textbf{Balanced Accuracy} : Précision équilibrée tenant compte des déséquilibres entre les classes.
-    \item \textbf{F1-Score pondéré} : Moyenne harmonique entre précision et rappel, pondérée par la taille des classes.
     \item \textbf{MCC} (\textit{Matthews Correlation Coefficient}) : Une mesure globale de qualité pour les classifications binaires et multiclasses.
 \end{itemize}
 
@@ -49,19 +48,17 @@ En complément, une matrice de confusion est générée pour illustrer la répar
     \label{fig:cart_metrics}
 \end{figure}
 
-Les figures \ref{fig:cart_conf_matrix} et \ref{fig:cart_metrics} montrent que le modèle CART atteint de bonnes performances globales, avec une \textit{Balanced Accuracy} supérieure à 0.95, un F1-Score pondéré stable, et un MCC élevé, démontrant une classification efficace même dans le cas de classes déséquilibrées. La matrice de confusion révèle toutefois des erreurs de classification mineures, principalement dans les classes sous-représentées, ce qui confirme l'importance de la pondération des classes pour améliorer la robustesse du modèle.
-
-Dans la majorité des dataFrame, le modèle CART est performant sur les 3 métriques pour les valeurs de profondeur inférieures à 5. Nous notons également que la Balanced Accuracy est plus faible pour les dataFrame 2 et 4 par rapport aux dataFrame 1 et 3.
+Les figures \ref{fig:cart_conf_matrix} et \ref{fig:cart_metrics} montrent que le modèle CART atteint de bonnes performances globales, avec une \textit{Balanced Accuracy} bonne pour les dataFrame 1 et 3 et plus faible pour les dataFrame 2 et 4, un F1-Score stable, et un MCC élevé.
 \subsection{Random Forest}
 
-Le modèle Random Forest est entraîné avec un nombre d'arbres définis par l'utilisateur (100 par défaut) et une profondeur maximale optionnelle (\texttt{max\_depth}).
+Le modèle Random Forest est entraîné avec un nombre d'arbres définis par l'utilisateur (100 par défaut) et une profondeur maximale optionnelle (20 par default).
 
 Une matrice de confusion est également générée pour visualiser la distribution des prédictions erronées et correctes entre les différentes classes. Les résultats sont représentés graphiquement pour une meilleure interprétation.
 
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.8\textwidth]{figures/training/radnomForestMatrix.png}
-    \caption{Matrice de confusion pour le modèle Random Forest avec pondération des classes \texttt{balanced}}
+    \caption{Matrice de confusion pour le modèle Random Forest}
     \label{fig:rf_conf_matrix}
 \end{figure}
 
@@ -123,9 +120,9 @@ Le modèle MLP (\textit{Multi-Layer Perceptron}) est entraîné avec une couche 
 
 Les figures \ref{fig:mlp_conf_matrix} et \ref{fig:mlp_metrics} montrent que le modèle MLP offre des performances compétitives. La \textit{Balanced Accuracy} atteint en général des valeurs supérieures à \(0.94\) pour les dataFrames 1 et 3, et se situe entre \(0.75\) et \(0.81\) pour les dataFrames 2 et 4. Le \textit{F1-Score} et le MCC indiquent une classification efficace, même sur des jeux de données déséquilibrés, bien qu'une convergence optimale dépende du choix des hyperparamètres comme la structure des couches et le taux d'apprentissage.
 
-Ici contrairement aux autres modèles, le MLP a une MCC plus faible pour les dataFrame 2 et 4 par rapport aux dataFrame 2, 3 et 4.
+Ici contrairement aux autres modèles, le MLP a une MCC plus faible pour les dataFrames 2 et 3.
 
-\conclusion
+\subsection{Conclusion}
 Dans l'ensemble, les modèles de classification supervisée présentés ont démontré des performances satisfaisantes sur les différents jeux de données. 
 La metric Balanced Accuracy montre aussi un desequilibre entre les classes pour les dataFrame 2 et 4. Cette différence peut être due à la nature des données, à la distribution des classes, ou à la qualité des caractéristiques sélectionnées.
 
