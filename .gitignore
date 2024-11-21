@@ -1,3 +1,4 @@
 /data
-/results
+/results/cleaned
 /st_venv
+**/__pycache__/*
