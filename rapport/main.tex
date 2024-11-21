@@ -1,0 +1,38 @@
+\documentclass[a4paper,12pt]{article}
+
+% Importation des fichiers de configuration
+\input{config/setup.tex}
+
+\begin{document}
+
+% Page de titre
+\input{config/titlepage.tex}
+
+% Chapitres
+\input{chapters/introduction.tex}
+\newpage
+
+\renewcommand{\contentsname}{Table des matières}
+\tableofcontents
+\newpage
+
+\input{chapters/data-preparation.tex}
+\newpage
+
+\input{chapters/data-analysis.tex}
+\newpage
+
+\input{chapters/model-training-physique.tex}
+\newpage
+
+\input{chapters/model-training-network.tex}
+\newpage
+
+\input{chapters/conclusion-perso.tex}
+\newpage
+
+\input{chapters/conclusion.tex}
+\newpage
+
+
+\end{document}

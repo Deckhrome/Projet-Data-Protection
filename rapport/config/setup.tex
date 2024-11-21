@@ -1,0 +1,42 @@
+% Packages de base
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+\usepackage{geometry}
+\usepackage{float}
+\geometry{a4paper, margin=2.5cm}
+
+% Police
+\usepackage{helvet}
+\renewcommand{\rmdefault}{phv}
+
+
+% Packages graphiques
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{amssymb}
+
+% Fichiers utilitaires
+\input{utils/colors.tex}
+\input{utils/styles.tex}
+
+% Personnalisation de l'en-tête
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhead[L]{\includegraphics[width=1.5cm]{figures/logo-unistra.png}}
+\fancyhead[C]{Protection des données - Rapport}
+\fancyhead[R]{21/11/2024}
+\setlength{\headsep}{1.5cm} % Modifier l'espace après l'en-tête
+
+
+% Autres configurations
+\setlength{\parindent}{0pt} % Pas d'indentation
+\setlength{\parskip}{.5em}   % Espacement entre les paragraphes
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=mainblue,
+    citecolor=mainblue,
+    urlcolor=mainblue
+}

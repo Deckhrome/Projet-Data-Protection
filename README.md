@@ -25,6 +25,12 @@ Activate the environment :
 conda activate data_protection
 ```
 
+## Run streamlit app
+
+```bash
+streamlit run web/streamlit_app_physical.py
+```
+
 ## Resources
 
 - Download all the data from [here](https://ieee-dataport.org/open-access/hardware-loop-water-distribution-testbed-wdt-dataset-cyber-physical-security-testing)

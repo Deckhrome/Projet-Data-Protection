@@ -1,0 +1,129 @@
+\section{Entraînement et évaluation des modèles pour les données physiques}
+
+\subsection{KNN (K-Nearest Neighbors)}
+Les principales étapes sont la normalisation des caractéristiques à l'aide de \texttt{StandardScaler} pour garantir une échelle uniforme des données, suivie de l'équilibrage des classes via l'algorithme \texttt{SMOTE} (\textit{Synthetic Minority Over-sampling Technique}) afin de corriger les déséquilibres dans les classes cibles. Ensuite, le jeu de données est divisé en ensembles d'entraînement et de test avec un ratio de 70/30 pour évaluer les performances du modèle avec une validation.
+
+Le modèle KNN est entraîné pour différentes valeurs de \(k\) (de 1 à une valeur maximale définie par l'utilisateur, par défaut 20). Pour chaque valeur de \(k\), la précision est calculée en utilisant les données de test, et une matrice de confusion est générée pour évaluer la qualité des prédictions. Une courbe de précision en fonction de \(k\) est tracée pour visualiser l'impact de ce paramètre sur les performances. Une matrice de confusion détaillée est également affichée pour une valeur spécifique de \(k\) définie par l'utilisateur.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{figures/training/knndf1.png}
+    \caption{Précision du modèle KNN en fonction de \(k\) pour le dataFrame 1}
+    \label{fig:knn}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{figures/training/df1matrixconf.png}
+    \caption{Matrice de confusion pour le modèle KNN avec \(k = 5\) pour le dataFrame 1}
+    \label{fig:knn}
+\end{figure}
+
+On peut voir sur les figure 1 et 2 que le modèle KNN a une précision plutot bonne pour les valeurs de \(k\) faible et que la précision diminue pour les valeurs de \(k\) plus élevées. Cela est dû au fait que le modèle devient plus complexe et commence à surajuster les données d'entraînement.
+
+Dans l'ensembles les modèles KNN ont une précision supérieur à 0.98 pour les valeurs de \(k\) inférieures à 5.
+\subsection{CART (Classification And Regression Tree)}
+
+L'analyse du modèle CART (\textit{Classification And Regression Tree}) commence par la préparation des données, avec une sélection des caractéristiques et des cibles, suivie d'une division des données en ensembles d'entraînement et de test avec un ratio de 80/20. Le modèle est ensuite entraîné avec une profondeur maximale définie par l'utilisateur (par défaut \(5\)).
+
+Pour évaluer les performances, trois métriques principales sont calculées : 
+\begin{itemize}
+    \item \textbf{Balanced Accuracy} : Précision équilibrée tenant compte des déséquilibres entre les classes.
+    \item \textbf{MCC} (\textit{Matthews Correlation Coefficient}) : Une mesure globale de qualité pour les classifications binaires et multiclasses.
+\end{itemize}
+
+En complément, une matrice de confusion est générée pour illustrer la répartition des erreurs de classification. Ces résultats sont visualisés à l'aide de graphiques.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{figures/training/cartmatrixdf1.png}
+    \caption{Matrice de confusion pour le modèle CART}
+    \label{fig:cart_conf_matrix}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{figures/training/cartmetric.png}
+    \caption{Métriques du modèle CART (Balanced Accuracy, F1-Score, MCC) pour le DataFrame analysé}
+    \label{fig:cart_metrics}
+\end{figure}
+
+Les figures \ref{fig:cart_conf_matrix} et \ref{fig:cart_metrics} montrent que le modèle CART atteint de bonnes performances globales, avec une \textit{Balanced Accuracy} bonne pour les dataFrame 1 et 3 et plus faible pour les dataFrame 2 et 4, un F1-Score stable, et un MCC élevé.
+\subsection{Random Forest}
+
+Le modèle Random Forest est entraîné avec un nombre d'arbres définis par l'utilisateur (100 par défaut) et une profondeur maximale optionnelle (20 par default).
+
+Une matrice de confusion est également générée pour visualiser la distribution des prédictions erronées et correctes entre les différentes classes. Les résultats sont représentés graphiquement pour une meilleure interprétation.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{figures/training/radnomForestMatrix.png}
+    \caption{Matrice de confusion pour le modèle Random Forest}
+    \label{fig:rf_conf_matrix}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{figures/training/randomForestMetric.png}
+    \caption{Métriques du modèle Random Forest (Balanced Accuracy, F1-Score, MCC) pour le DataFrame analysé}
+    \label{fig:rf_metrics}
+\end{figure}
+
+Les figures \ref{fig:rf_conf_matrix} et \ref{fig:rf_metrics} montrent que le modèle Random Forest offre une robustesse et une précision élevées, avec une \textit{Balanced Accuracy} supérieure à 0.97 sur le dataFrame 1 et 3 et entre 0.72 et 0.78 pour le 2 et 4. Le \textit{F1-Score} et le MCC sont eux très bon dans tout les cas.
+
+\subsection{XGBoost (Extreme Gradient Boosting)}
+
+L'analyse du modèle XGBoost repose sur une préparation initiale des données comprenant la sélection des caractéristiques et des cibles, suivie d'une conversion des étiquettes cibles en valeurs numériques à l'aide d'un \textit{Label Encoder}. Les données sont ensuite divisées en ensembles d'entraînement et de test avec un ratio de 80/20.
+
+Le modèle XGBoost est paramétré avec les hyperparamètres suivants :
+\begin{itemize}
+    \item \textbf{\texttt{n\_estimators}} : Nombre de tours de boosting (par défaut \(100\)).
+    \item \textbf{\texttt{max\_depth}} : Profondeur maximale des arbres (par défaut \(6\)).
+    \item \textbf{\texttt{learning\_rate}} : Taux d'apprentissage pour éviter le surapprentissage (par défaut \(0.1\)).
+    \item \textbf{\texttt{subsample}} : Ratio d'échantillonnage des instances d'entraînement (par défaut \(1.0\)).
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{figures/training/xgboostmatrix.png}
+    \caption{Matrice de confusion pour le modèle XGBoost}
+    \label{fig:xgb_conf_matrix}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{figures/training/xgboostmetric.png}
+    \caption{Métriques du modèle XGBoost (Balanced Accuracy, F1-Score, MCC)}
+    \label{fig:xgb_metrics}
+\end{figure}
+
+Les figures \ref{fig:xgb_conf_matrix} et \ref{fig:xgb_metrics} mettent en évidence les performances du modèle XGBoost. Avec une \textit{Balanced Accuracy} bonne pour les dataFrame 1 et 3 et plus faible pour les dataFrame 2 et 4. Le \textit{F1-Score} et le MCC sont eux très bon dans tout les cas.
+
+\subsection{MLP (Multi-Layer Perceptron)}
+
+Le modèle MLP (\textit{Multi-Layer Perceptron}) est entraîné avec une couche cachée de 100 neurones, un maximum de 200 itérations, une régularisation L2 (\texttt{alpha} = 0.0001), et un taux d'apprentissage constant.
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{figures/training/mlpmatrix.png}
+    \caption{Matrice de confusion pour le modèle MLP}
+    \label{fig:mlp_conf_matrix}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{figures/training/mlpmetric.png}
+    \caption{Métriques du modèle MLP (Balanced Accuracy, F1-Score, MCC)}
+    \label{fig:mlp_metrics}
+\end{figure}
+
+Les figures \ref{fig:mlp_conf_matrix} et \ref{fig:mlp_metrics} montrent que le modèle MLP offre des performances compétitives. La \textit{Balanced Accuracy} atteint en général des valeurs supérieures à \(0.94\) pour les dataFrames 1 et 3, et se situe entre \(0.75\) et \(0.81\) pour les dataFrames 2 et 4. Le \textit{F1-Score} et le MCC indiquent une classification efficace, même sur des jeux de données déséquilibrés, bien qu'une convergence optimale dépende du choix des hyperparamètres comme la structure des couches et le taux d'apprentissage.
+
+Ici contrairement aux autres modèles, le MLP a une MCC plus faible pour les dataFrames 2 et 3.
+
+\subsection{Conclusion}
+Dans l'ensemble, les modèles de classification supervisée présentés ont démontré des performances satisfaisantes sur les différents jeux de données. 
+La metric Balanced Accuracy montre aussi un desequilibre entre les classes pour les dataFrame 2 et 4. Cette différence peut être due à la nature des données, à la distribution des classes, ou à la qualité des caractéristiques sélectionnées.
+
+Dans KNN nous avons effectué un ré-equilibrage des classes avec l'algorithme SMOTE, ce qui a permis d'améliorer les performances du modèle pour la balanced accuracy, pour les 4 dataFrame la balanced accuracy est supérieur à 0.93.
