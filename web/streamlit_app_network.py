@@ -4,10 +4,10 @@ import plotly.express as px
 from st_functions_network import *
 # Set path of the data
 PATHS = {
-    "Attack 1": "results/cleaned/Network_dataset/attack_1_cleaned.csv",
-    "Attack 2": "results/cleaned/Network_dataset/attack_2_cleaned.csv",
-    "Attack 3": "results/cleaned/Network_dataset/attack_3_cleaned.csv",
-    "Attack 4": "results/cleaned/Network_dataset/attack_4_cleaned.csv",
+    "Attack 1": "results/cleaned/Network datatset/attack_1_cleaned.csv",
+    "Attack 2": "results/cleaned/Network datatset/attack_2_cleaned.csv",
+    "Attack 3": "results/cleaned/Network datatset/attack_3_cleaned.csv",
+    "Attack 4": "results/cleaned/Network datatset/attack_4_cleaned.csv",
 }
 
 DATASET_INDEX_MAPPING = {
