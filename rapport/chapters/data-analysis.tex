@@ -130,19 +130,112 @@ Ces deux données sont donc liées et il est possible de ne pas utiliser la colo
   % Première ligne
   \begin{minipage}[b]{0.45\textwidth}
     \centering
-    \includegraphics[width=\textwidth]{figures/physical-analysis/distriblabel.png}
+    \includegraphics[width=\textwidth]{figures/physical-analysis/newplot1.png}
   \end{minipage}
   \hfill
   \begin{minipage}[b]{0.45\textwidth}
     \centering
-    \includegraphics[width=\textwidth]{figures/physical-analysis/distriblabel_n.png}
+    \includegraphics[width=\textwidth]{figures/physical-analysis/newplot2.png}
   \end{minipage}
-  \caption{Distribution de \texttt{label} et \texttt{label\_n}}
-  \label{fig:labels}
+  \caption{Distribution des valeurs de \texttt{tank} selon le type d'attaque}
+  \label{fig:tank}
 \end{figure}
 
-% Distribution des valeurs de tank : pas de conclusion
+Un graphe a été généré pour chaque dataframe et pour chaque tank mais il n'y a pas de tendance claire. Il est donc difficile de tirer des conclusions sur la distribution des valeurs de tank.
 
-% Distribution valves: 10 -> toujours attaque + pas de loi trouvée pour prédire le nombre d'attaques en fonction du nombre de valves ouvertes
+\subsubsection*{Distriubution selon le nombre de valves}
 
-% Distribution des pumps : Toujours à peu près le même nombre d'attaques en fonction du nombre de pump
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.6\textwidth]{figures/physical-analysis/newplot.png}
+  \caption{Distribution du nombre d'attaques en fonction du nombre de valves ouvertes}
+  \label{fig:valv-distribution}
+\end{figure}
+
+Cette figure montre qu'il n'y a pas de tendance claire entre le nombre d'attaques et le nombre de valves ouvertes.
+
+\subsubsection*{Distribution des valeurs de \texttt{pump}}
+
+\begin{figure}[H]
+  \centering
+  % Première ligne
+  \begin{minipage}[b]{0.45\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figures/physical-analysis/pump1.png}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{0.45\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figures/physical-analysis/pump2.png}
+  \end{minipage}
+  \vspace{1em} % Espace vertical entre les lignes
+  % Deuxième ligne
+  \begin{minipage}[b]{0.45\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figures/physical-analysis/pump3.png}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{0.45\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figures/physical-analysis/pump4.png}
+  \end{minipage}
+  \caption{Distribution du nombre d'attaques en fonction du nombre de pompes ouvertes}
+  \label{fig:pump}
+\end{figure}
+
+La distribution des pompes montre que mis à part pour le dataframe 1, le nombre d'attaques est à peu près le même qu'il y ait 0, 1, 2, 3 ou 4 pompes ouvertes. Concernant le cas de 5 pompes ouvertes, il n'y a pas assez de données pour tirer des conclusions.
+
+\subsection{Données réseau}
+
+\subsubsection*{Répartition des attaques}
+
+\begin{figure}[H]
+  \centering
+  % Première ligne
+  \includegraphics[width=\textwidth]{figures/physical-analysis/attack3.png}
+  \vspace{1em} % Espace vertical entre les lignes
+  % Deuxième ligne
+  \includegraphics[width=\textwidth]{figures/physical-analysis/attack4.png}
+  \caption{Distribution du nombre d'attaques en fonction du nombre de pompes ouvertes}
+  \label{fig:network-repartition}
+\end{figure}
+
+Les attaques sont réparties de la manière suivante :
+\begin{itemize}
+  \item La tendance globale montre une majorité de valeurs \texttt{normal} et une minorité de valeurs \texttt{SCAN}.
+  \item Pour le protocole TCP, il y a une majorité d'attaques DoS.
+  \item Pour le protocole ModBus, il y a une majorité d'attaques MITM.
+  \item Pour le DataFrame 1, il n'y a ni d'attaque SCAN ni de DoS.
+\end{itemize}
+
+\subsubsection*{Correlation entre les adresses MAC et IP}
+
+\begin{figure}[H]
+  \centering
+  % Première ligne
+  \includegraphics[width=\textwidth]{figures/physical-analysis/co-occurence1.png}
+  \caption{Matrice de co-ocurence entre les adresses MAC et IP pour le dataframe 1}
+  \label{fig:co-ocurence}
+\end{figure}
+
+La figure \ref{fig:co-ocurence} montre que les adresses MAC et IP sont liées : pour une adresse MAC donnée, il y a une adresse IP correspondante. Seule exception, pour le dataset 1, il y a des adresses MAC qui n'ont pas d'IP correspondante.
+
+\subsubsection*{Comparaison des moyennes du nombre de pacquets}
+
+\begin{figure}[H]
+  \centering
+  % Première ligne
+  \includegraphics[width=\textwidth]{figures/physical-analysis/mean33.png}
+  \vspace{1em} % Espace vertical entre les lignes
+  % Deuxième ligne
+  \includegraphics[width=\textwidth]{figures/physical-analysis/mean41.png}
+  \caption{Comparaison des moyennes de pacquet pour chaque type d'attaque pour deux dataframes}
+  \label{fig:mean}
+\end{figure}
+
+La figure \ref{fig:mean} montre que les moyennes sont à des niveaux similaires pour les différents types d'attaques, excepté pour l'attaque DoS. Dans le dataframe 4, il y a plus de pacquets pour les attaques DoS que pour les autres types d'attaques, et dans le 3 il y en a moins.
+
+\subsubsection*{Autres remarques}
+
+Flag discrimine les scans et label\_n permet de détecter les attaques MITM.
+
