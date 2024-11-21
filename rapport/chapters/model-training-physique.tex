@@ -1,18 +1,18 @@
-\section{Entraînement et évaluation des modèles}
+\section{Entraînement et évaluation des modèles pour les données physiques}
 
 \subsection{KNN (K-Nearest Neighbors)}
 Les principales étapes sont la normalisation des caractéristiques à l'aide de \texttt{StandardScaler} pour garantir une échelle uniforme des données, suivie de l'équilibrage des classes via l'algorithme \texttt{SMOTE} (\textit{Synthetic Minority Over-sampling Technique}) afin de corriger les déséquilibres dans les classes cibles. Ensuite, le jeu de données est divisé en ensembles d'entraînement et de test avec un ratio de 70/30 pour évaluer les performances du modèle avec une validation.
 
 Le modèle KNN est entraîné pour différentes valeurs de \(k\) (de 1 à une valeur maximale définie par l'utilisateur, par défaut 20). Pour chaque valeur de \(k\), la précision est calculée en utilisant les données de test, et une matrice de confusion est générée pour évaluer la qualité des prédictions. Une courbe de précision en fonction de \(k\) est tracée pour visualiser l'impact de ce paramètre sur les performances. Une matrice de confusion détaillée est également affichée pour une valeur spécifique de \(k\) définie par l'utilisateur.
 
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{figures/training/knndf1.png}
     \caption{Précision du modèle KNN en fonction de \(k\) pour le dataFrame 1}
     \label{fig:knn}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{figures/training/df1matrixconf.png}
     \caption{Matrice de confusion pour le modèle KNN avec \(k = 5\) pour le dataFrame 1}
@@ -34,14 +34,14 @@ Pour évaluer les performances, trois métriques principales sont calculées :
 
 En complément, une matrice de confusion est générée pour illustrer la répartition des erreurs de classification. Ces résultats sont visualisés à l'aide de graphiques.
 
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{figures/training/cartmatrixdf1.png}
     \caption{Matrice de confusion pour le modèle CART}
     \label{fig:cart_conf_matrix}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{figures/training/cartmetric.png}
     \caption{Métriques du modèle CART (Balanced Accuracy, F1-Score, MCC) pour le DataFrame analysé}
@@ -55,14 +55,14 @@ Le modèle Random Forest est entraîné avec un nombre d'arbres définis par l'u
 
 Une matrice de confusion est également générée pour visualiser la distribution des prédictions erronées et correctes entre les différentes classes. Les résultats sont représentés graphiquement pour une meilleure interprétation.
 
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{figures/training/radnomForestMatrix.png}
     \caption{Matrice de confusion pour le modèle Random Forest}
     \label{fig:rf_conf_matrix}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{figures/training/randomForestMetric.png}
     \caption{Métriques du modèle Random Forest (Balanced Accuracy, F1-Score, MCC) pour le DataFrame analysé}
@@ -83,14 +83,14 @@ Le modèle XGBoost est paramétré avec les hyperparamètres suivants :
     \item \textbf{\texttt{subsample}} : Ratio d'échantillonnage des instances d'entraînement (par défaut \(1.0\)).
 \end{itemize}
 
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{figures/training/xgboostmatrix.png}
     \caption{Matrice de confusion pour le modèle XGBoost}
     \label{fig:xgb_conf_matrix}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{figures/training/xgboostmetric.png}
     \caption{Métriques du modèle XGBoost (Balanced Accuracy, F1-Score, MCC)}
@@ -104,14 +104,14 @@ Les figures \ref{fig:xgb_conf_matrix} et \ref{fig:xgb_metrics} mettent en évide
 Le modèle MLP (\textit{Multi-Layer Perceptron}) est entraîné avec une couche cachée de 100 neurones, un maximum de 200 itérations, une régularisation L2 (\texttt{alpha} = 0.0001), et un taux d'apprentissage constant.
 
 
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{figures/training/mlpmatrix.png}
     \caption{Matrice de confusion pour le modèle MLP}
     \label{fig:mlp_conf_matrix}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{figures/training/mlpmetric.png}
     \caption{Métriques du modèle MLP (Balanced Accuracy, F1-Score, MCC)}
