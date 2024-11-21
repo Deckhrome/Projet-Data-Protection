@@ -2,7 +2,7 @@
   "name": "LaTeX DevContainer",
   "build": {
     "dockerfile": "Dockerfile",
-    "context": ".." // Spécifie que le contexte est le dossier parent
+    "context": ".."
   },
   "customizations": {
     "vscode": {
